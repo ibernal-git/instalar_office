@@ -31,7 +31,7 @@ fn main() {
     let mut office_key= String::new();
 
 
-    if channel != Channels::O365ProPlusRetail.get_value() {
+    if channel.get_value() != Channels::O365ProPlusRetail.get_value() {
         let office_key_file = OFFICE_KEY_FILE;
         
         match read_file(office_key_file) {
@@ -63,7 +63,7 @@ fn main() {
         </Product>
     </Add>
     <RemoveMSI All=\"True\" />
-    </Configuration>", channel, channel, office_key);
+    </Configuration>", channel.get_value(), channel.get_product_id(), office_key);
 
     match write_file(XML_FILENAME, &xml_string) {
         Ok(result) => println!("{}", result),

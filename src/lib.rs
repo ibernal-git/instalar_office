@@ -22,6 +22,12 @@ impl Channels {
             Channels::O365ProPlusRetail => "O365ProPlusRetail",
         }
     }
+    pub fn get_product_id(&self) -> &'static str {
+        match self {
+            Channels::PerpetualVL2019 => "ProPlus2019Volume",
+            Channels::O365ProPlusRetail => "O365ProPlusRetail",
+        }
+    }
 }
 
 pub const OFFICE_DEPLOYMENT_TOOL_URL: &str = "https://download.microsoft.com/download/2/7/A/27AF1BE6-DD20-4CB4-B154-EBAB8A7D4A7E/officedeploymenttool_15726-20202.exe";
@@ -29,7 +35,7 @@ pub const OFFICE_KEY_FILE: &str = "clave.txt";
 pub const DEPLOYMENT_FILENAME: &str = "file.exe";
 pub const XML_FILENAME: &str = "configuration.xml";
 
-pub fn get_channel() -> &'static str {
+pub fn get_channel() -> Channels {
         loop {
         println!("Selecciona un canal:");
 
@@ -49,8 +55,8 @@ pub fn get_channel() -> &'static str {
         };
 
         match user_option {
-            1 =>  return Channels::PerpetualVL2019.get_value(),
-            2 =>  return Channels::O365ProPlusRetail.get_value(),
+            1 =>  return Channels::PerpetualVL2019,
+            2 =>  return Channels::O365ProPlusRetail,
             _ => println!("Opción no válida"),
         }
 
